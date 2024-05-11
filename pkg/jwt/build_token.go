@@ -7,11 +7,6 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-const (
-	ISSUER   = "SawitPro-Challenge"
-	AUDIENCE = "SawitPro-Challenge"
-)
-
 func BuildToken(data map[string]interface{}) (string, int64, error) {
 	claims := mapData(data)
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)

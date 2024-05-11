@@ -7,6 +7,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"github.com/radityacandra/go-project-mongodb/pkg/errors/service_error"
+	"github.com/radityacandra/go-project-mongodb/pkg/jwt/types"
 )
 
 type ErrorDetail struct {
@@ -66,6 +67,12 @@ func GlobalErrorHandler(err error, c echo.Context) error {
 		return c.JSON(http.StatusNotFound, ErrorResponse{
 			Timestamp: time.Now().Unix(),
 			Code:      404,
+			Message:   err.Error(),
+		})
+	case *types.AuthorizationError:
+		return c.JSON(http.StatusUnauthorized, ErrorResponse{
+			Timestamp: time.Now().Unix(),
+			Code:      401,
 			Message:   err.Error(),
 		})
 	default:

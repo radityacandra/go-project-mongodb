@@ -6,7 +6,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"github.com/radityacandra/go-project-mongodb/internal/application/user/dto"
-	"github.com/radityacandra/go-project-mongodb/pkg/error_wrapper"
+	"github.com/radityacandra/go-project-mongodb/pkg/wrapper/error_wrapper"
 )
 
 func (h *Handler) Authenticate(ctx echo.Context) error {

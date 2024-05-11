@@ -10,6 +10,7 @@ import (
 type IService interface {
 	Register(ctx context.Context, req dto.RegisterRequest) (dto.RegisterResponse, error)
 	Authenticate(ctx context.Context, req dto.AuthenticateRequest) (dto.AuthenticateResponse, error)
+	Logout(ctx context.Context) error
 }
 
 type Service struct {
