@@ -12,7 +12,7 @@ To run the project, run the following command:
 docker-compose up --build
 ```
 
-To drop any built image and volume, run the following command (WARNING: ALL SAVED DATA WILL BE LOST)
+To drop any built image and volume, run the following command (**WARNING: ALL SAVED DATA WILL BE LOST**)
 
 ```
 docker-compose down -v
