@@ -1,0 +1,688 @@
+{
+	"info": {
+		"_postman_id": "f50213c6-c873-429d-b67f-cdc32848539a",
+		"name": "Go-Sample-Project-Mongodb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "283570"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"test2\",\n    \"password\": \"password\",\n    \"phoneNumber\": \"081123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/users"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test2\",\n    \"password\": \"password\",\n    \"phoneNumber\": \"081123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:31:40 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "98"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": \"0b1d0635-25bd-42c0-9e38-849bd0e1fcec\",\n    \"username\": \"test2\",\n    \"phoneNumber\": \"081123456789\"\n}"
+				},
+				{
+					"name": "conflict",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test2\",\n    \"password\": \"password\",\n    \"phoneNumber\": \"081123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users"
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:31:51 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": 1715470311,\n    \"code\": 409,\n    \"message\": \"existing user with the same username already exist\",\n    \"errors\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"test\",\n    \"password\": \"passwordd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/users/auth"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users/auth"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:34:24 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "890"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiS2VjaWxpbi1DaGFsbGVuZ2UiXSwiZXhwIjoxNzE1NDgxMjY0LCJpYXQiOjE3MTU0NzA0NjQsImlzcyI6IktlY2lsaW4tQ2hhbGxlbmdlIiwibmJmIjoxNzE1NDcwNDY0LCJzZXNzaW9uSWQiOiIwMWZjMGQ4Ni04NzEzLTQ4YmQtYmVkOC0xNGZkNzM3Y2U1YTAiLCJ1c2VySWQiOiI0N2Q4MTQwNy00ZDdlLTQ1NjItYWZiNy0xMzkzMzRkZTBhMDYiLCJ1c2VybmFtZSI6InRlc3QifQ.Xx3g5KPiG2uHXi0x2fmDIRbA-FJSJZZUs8yS6vqUoQcyPXXmxB-1LXmEiRwIlZbmhHIBDgevd6nlg0DGUH4N4hgnPojHmTXfWnzPV1rgEXfHO1rJZ0YgkvP7o30SZW2Hq7vAPuf7_lU3WAwNs_33dJANQsZtHiG-fhvhBqWb7ZmhZxzphftLVJ1EyCOFNApvOjd_7asi7pGcJ3xSDPeOO2lf9h6GXZB0LMKRM5M1dnCf5IJED6XwJeF1AJDqBKlG7lSsq43QYkPn2xSpMdj1d9Y-7KnOhenFaP_EDGWDyH9R1HnmOyPEMY-x-oiZIrTYPp6xsGKnmnVHVlcRTXc5-Ocvh0lqlCLtI1Tok_XL-0VvYpU0MT1XgrDd2Xhpmv-YvliLNgn-dPN1Hcm91w_Eyvp31TS5GHyTBJbp4KmF9gtVOs4m3qLLvR50YE9LLU1wMuE8N2SY1VJpdGzPhpAgRnjvrxoZL80r8GCvwGpyD6eGmICGE2lAgcOgeYKgZGid\",\n    \"expiredAt\": 1715481264\n}"
+				},
+				{
+					"name": "invalid username/pass",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test\",\n    \"password\": \"passwordd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users/auth"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:34:34 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "91"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": 1715470474,\n    \"code\": 400,\n    \"message\": \"invalid username or password\",\n    \"errors\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "create building",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{bearer_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Rented House 2\",\n    \"lat\": -6.4401823,\n    \"long\": 106.7229039\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/buildings"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Rented House 2\",\n    \"lat\": -6.4401823,\n    \"long\": 106.7229039\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/buildings"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:37:20 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "114"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"buildingId\": \"cc1ab087-cd88-4508-9cc6-1c6967dc4097\",\n    \"name\": \"Rented House 2\",\n    \"lat\": -6.4401823,\n    \"long\": 106.7229039\n}"
+				}
+			]
+		},
+		{
+			"name": "list building",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{bearer_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/buildings",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"buildings"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"description": "optional, default 1",
+							"disabled": true
+						},
+						{
+							"key": "per_page",
+							"value": "10",
+							"description": "optional, default 10",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "name",
+							"description": "optional, default name",
+							"disabled": true
+						},
+						{
+							"key": "order",
+							"value": "desc",
+							"description": "optional, default asc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/buildings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"buildings"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "optional, default 1",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "optional, default 10",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "name",
+									"description": "optional, default name",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "desc",
+									"description": "optional, default asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:40:41 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "392"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"meta\": {\n        \"page\": 1,\n        \"perPage\": 10,\n        \"maxPage\": 1\n    },\n    \"data\": [\n        {\n            \"buildingId\": \"683dd1e6-0372-427d-abeb-8a5f7a9520d9\",\n            \"name\": \"Main House\",\n            \"lat\": -6.4352231,\n            \"long\": 106.7327838\n        },\n        {\n            \"buildingId\": \"fb76fcec-6d87-408b-a5ad-dec0db7a50e7\",\n            \"name\": \"Rented House 1\",\n            \"lat\": -6.4401823,\n            \"long\": 106.7229039\n        },\n        {\n            \"buildingId\": \"cc1ab087-cd88-4508-9cc6-1c6967dc4097\",\n            \"name\": \"Rented House 2\",\n            \"lat\": -6.4401823,\n            \"long\": 106.7229039\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "create cctv",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{bearer_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Default Some-Brand CCTV 242342\",\n    \"deviceId\": \"Some-Brand_Type_Identifier_242342\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/cctvs"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Default Some-Brand CCTV 242342\",\n    \"deviceId\": \"Some-Brand_Type_Identifier_242342\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/cctvs"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:43:17 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "171"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"32be2b89-d5a4-4da7-a63b-adae20a0e242\",\n    \"name\": \"Default Some-Brand CCTV 242342\",\n    \"deviceId\": \"Some-Brand_Type_Identifier_242342\",\n    \"status\": true,\n    \"lastUpdate\": 1715470997\n}"
+				}
+			]
+		},
+		{
+			"name": "put cctv",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{bearer_token}}"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"CCTV 1\", // optional\n    \"buildingId\": \"683dd1e6-0372-427d-abeb-8a5f7a9520d9\", // optional\n    \"status\": true // optional\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/cctvs/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cctvs",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "32be2b89-d5a4-4da7-a63b-adae20a0e242"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"CCTV 1\", // optional\n    \"buildingId\": \"683dd1e6-0372-427d-abeb-8a5f7a9520d9\", // optional\n    \"status\": true // optional\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cctvs/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cctvs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "32be2b89-d5a4-4da7-a63b-adae20a0e242"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:45:33 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "128"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"32be2b89-d5a4-4da7-a63b-adae20a0e242\",\n    \"name\": \"CCTV 1\",\n    \"status\": true,\n    \"buildingId\": \"683dd1e6-0372-427d-abeb-8a5f7a9520d9\"\n}"
+				}
+			]
+		},
+		{
+			"name": "report cctv event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{bearer_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Motion Detected\",\n    \"timestamp\": 1715471264,\n    \"type\": \"alarm\",\n    \"source\": \"https://www.google.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/cctvs/:id/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cctvs",
+						":id",
+						"events"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "32be2b89-d5a4-4da7-a63b-adae20a0e242"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Motion Detected\",\n    \"timestamp\": 1715471264,\n    \"type\": \"alarm\",\n    \"source\": \"https://www.google.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cctvs/:id/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cctvs",
+								":id",
+								"events"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "32be2b89-d5a4-4da7-a63b-adae20a0e242"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:47:59 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"eventId\": \"ef5843b1-5c20-4bd7-8975-409b2f1dab39\",\n    \"name\": \"Motion Detected\",\n    \"timestamp\": 1715471264,\n    \"type\": \"alarm\",\n    \"source\": \"https://www.google.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{bearer_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"url": "{{base_url}}/users/logout"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base_url}}/users/logout"
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 May 2024 23:49:24 GMT"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
