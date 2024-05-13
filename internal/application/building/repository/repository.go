@@ -9,7 +9,8 @@ import (
 
 type IRepository interface {
 	Create(ctx context.Context, building *model.Building) error
-	FindBuildingByUserId(ctx context.Context, userId string, page, pageSize int, sortBy, order string) ([]model.Building, int)
+	FindBuildingByUserId(ctx context.Context, userId string,
+		page, pageSize int, sortBy, order string, keyword *string) ([]model.Building, int)
 	FindBuildingByUserIdAndName(ctx context.Context, userId, name string) *model.Building
 }
 

@@ -12,7 +12,7 @@ func (s *Service) List(ctx context.Context, req dto.ListRequest) (dto.MetaRespon
 	tokenData := ctx.Value(jwt.TOKEN_DATA).(map[string]string)
 	userId := tokenData["userId"]
 
-	buildings, total := s.repository.FindBuildingByUserId(ctx, userId, req.Page, req.PerPage, req.Sort, req.Order)
+	buildings, total := s.repository.FindBuildingByUserId(ctx, userId, req.Page, req.PerPage, req.Sort, req.Order, req.Keyword)
 
 	var result []dto.ListResponse
 	for _, building := range buildings {

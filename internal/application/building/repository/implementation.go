@@ -2,10 +2,12 @@ package repository
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/radityacandra/go-project-mongodb/internal/application/building/dto"
 	"github.com/radityacandra/go-project-mongodb/internal/application/building/model"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 const COLLECTION_NAME = "buildings"
@@ -31,7 +33,8 @@ func (r *Repository) FindBuildingByUserIdAndName(ctx context.Context, userId, na
 	return &building
 }
 
-func (r *Repository) FindBuildingByUserId(ctx context.Context, userId string, page, pageSize int, sortBy, order string) ([]model.Building, int) {
+func (r *Repository) FindBuildingByUserId(ctx context.Context, userId string, page, pageSize int,
+	sortBy, order string, keyword *string) ([]model.Building, int) {
 	var buildings []model.Building
 
 	sortOrder := 1
@@ -40,6 +43,13 @@ func (r *Repository) FindBuildingByUserId(ctx context.Context, userId string, pa
 	}
 
 	filter := bson.D{{Key: "userId", Value: userId}}
+
+	if keyword != nil {
+		filter = append(filter, bson.E{Key: "$or", Value: bson.A{
+			bson.D{{Key: "name", Value: bson.D{{Key: "$regex", Value: primitive.Regex{Pattern: fmt.Sprintf("%s.*", *keyword), Options: "i"}}}}},
+		}})
+	}
+
 	result, err := r.db.Collection(COLLECTION_NAME).
 		Aggregate(ctx, bson.A{
 			bson.D{{Key: "$match", Value: filter}},

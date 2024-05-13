@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "login",
+			"name": "register",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -112,7 +112,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"test\",\n    \"password\": \"passwordd\"\n}",
+					"raw": "{\n    \"username\": \"test\",\n    \"password\": \"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -311,6 +311,12 @@
 							"key": "order",
 							"value": "desc",
 							"description": "optional, default asc",
+							"disabled": true
+						},
+						{
+							"key": "keyword",
+							"value": "main",
+							"description": "optional, default no keyword",
 							"disabled": true
 						}
 					]
