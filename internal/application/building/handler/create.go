@@ -25,7 +25,7 @@ func (h *Handler) Create(ctx echo.Context) error {
 
 	res, err := h.service.Create(context.WithValue(ctx.Request().Context(), jwt.TOKEN_DATA, ctx.Get(jwt.CONTEXT_KEY)), req)
 	if err == nil {
-		return ctx.JSON(http.StatusOK, res)
+		return ctx.JSON(http.StatusCreated, res)
 	}
 
 	return error_wrapper.GlobalErrorHandler(err, ctx)

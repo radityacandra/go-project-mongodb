@@ -5,4 +5,4 @@ keeptree: true
 packages:
   github.com/radityacandra/go-project-mongodb:
     config:
-      dir: mocks/{{.InterfaceDirRelative}}
+      dir: mocks/{{ replaceAll .InterfaceDirRelative "internal" "internal_" }}
