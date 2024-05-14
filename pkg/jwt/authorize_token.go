@@ -40,10 +40,9 @@ func AuthorizeToken(authorizationStr string) (map[string]string, error) {
 		return nil, types.NewAuthorizationError(err.Error())
 	}
 
-	// TODO: check this signature verification process
-	// if err := jwt.SigningMethodRS256.Verify(token.Raw, token.Signature, key); err != nil {
-	// 	return nil, err
-	// }
+	if !token.Valid {
+		return nil, types.NewAuthorizationError("failed to verify signature")
+	}
 
 	if _, ok := token.Claims.(jwt.MapClaims); !ok {
 		return nil, types.NewAuthorizationError("invalid token")
